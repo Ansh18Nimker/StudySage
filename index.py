@@ -9,7 +9,7 @@ app.instance_path = "/tmp"
 
 # ---------------- CONFIG ----------------
 app.config['SECRET_KEY'] = 'studysage_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///studysage.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/studysage.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
