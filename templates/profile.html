@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - StudySage</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Baloo 2',sans-serif;
+            background:#f0f4f0;
+        }
+
+        /* HEADER */
+
+        .header{
+
+            background:white;
+
+            padding:15px 20px;
+
+            display:flex;
+
+            justify-content:space-between;
+            align-items:center;
+
+            box-shadow:0px 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo{
+
+            font-size:28px;
+
+            font-weight:bold;
+
+            color:#2d5f3f;
+
+            text-decoration:none;
+
+            display:flex;
+
+            align-items:center;
+        }
+
+        .logo-mascot{
+
+            width:40px !important;
+
+            height:40px !important;
+
+            margin-right:5px;
+        }
+
+        .nav-links{
+
+            display:flex;
+
+            gap:20px;
+
+            align-items:center;
+        }
+
+        .nav-links a{
+
+            color:#2d5f3f;
+
+            text-decoration:none;
+
+            font-weight:600;
+        }
+
+        .user-profile{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:10px;
+
+            padding:8px 16px;
+
+            background:#f0f4f0;
+
+            border-radius:25px;
+
+            text-decoration:none;
+        }
+
+        .user-avatar{
+
+            width:35px;
+
+            height:35px;
+
+            border-radius:50%;
+
+            background:linear-gradient(
+                135deg,
+                #4a7c59 0%,
+                #2d5f3f 100%
+            );
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            color:white;
+
+            font-weight:bold;
+        }
+
+        /* MAIN */
+
+        .profile-container{
+
+            max-width:1300px;
+
+            margin:auto;
+
+            padding:40px 20px;
+        }
+
+        /* PROFILE HEADER */
+
+        .profile-header{
+
+            background:linear-gradient(
+                135deg,
+                #4a7c59 0%,
+                #2d5f3f 100%
+            );
+
+            color:white;
+
+            padding:45px;
+
+            border-radius:25px;
+
+            display:flex;
+
+            align-items:center;
+
+            gap:40px;
+
+            margin-bottom:35px;
+        }
+
+        .profile-avatar-large{
+
+            width:140px;
+
+            height:140px;
+
+            border-radius:50%;
+
+            background:white;
+
+            color:#2d5f3f;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            font-size:52px;
+
+            font-weight:bold;
+
+            border:5px solid rgba(255,255,255,0.3);
+        }
+
+        .profile-info{
+
+            flex:1;
+        }
+
+        .profile-name{
+
+            font-size:42px;
+
+            margin-bottom:10px;
+        }
+
+        .profile-email{
+
+            font-size:18px;
+
+            opacity:0.9;
+
+            margin-bottom:25px;
+        }
+
+        .profile-stats{
+
+            display:flex;
+
+            gap:40px;
+        }
+
+        .stat-item{
+
+            text-align:center;
+        }
+
+        .stat-number{
+
+            font-size:32px;
+
+            font-weight:bold;
+        }
+
+        .stat-text{
+
+            font-size:14px;
+
+            opacity:0.9;
+        }
+
+        /* GRID */
+
+        .content-grid{
+
+            display:grid;
+
+            grid-template-columns:1fr 1fr;
+
+            gap:25px;
+        }
+
+        .profile-card{
+
+            background:white;
+
+            padding:30px;
+
+            border-radius:22px;
+
+            box-shadow:0px 4px 18px rgba(0,0,0,0.08);
+        }
+
+        .full-width{
+
+            grid-column:1 / -1;
+        }
+
+        .card-title{
+
+            font-size:24px;
+
+            color:#2d5f3f;
+
+            margin-bottom:25px;
+        }
+
+        /* INFO */
+
+        .info-group{
+
+            margin-bottom:22px;
+        }
+
+        .info-label{
+
+            color:#5a7a63;
+
+            font-size:14px;
+
+            margin-bottom:6px;
+        }
+
+        .info-value{
+
+            color:#2d5f3f;
+
+            font-size:18px;
+
+            font-weight:600;
+        }
+
+        /* TAGS */
+
+        .interests-tags{
+
+            display:flex;
+
+            flex-wrap:wrap;
+
+            gap:12px;
+        }
+
+        .interest-tag{
+
+            padding:10px 18px;
+
+            background:#e8f5e9;
+
+            color:#2d5f3f;
+
+            border-radius:20px;
+
+            font-weight:600;
+        }
+
+        /* GOALS */
+
+        .goal-item{
+
+            padding:18px;
+
+            background:#f0f4f0;
+
+            border-radius:15px;
+
+            margin-bottom:18px;
+        }
+
+        .goal-title{
+
+            color:#2d5f3f;
+
+            font-weight:bold;
+
+            margin-bottom:10px;
+        }
+
+        .progress-bar{
+
+            width:100%;
+
+            height:10px;
+
+            background:#d4e4d8;
+
+            border-radius:20px;
+
+            overflow:hidden;
+        }
+
+        .progress-fill{
+
+            height:100%;
+
+            background:linear-gradient(
+                135deg,
+                #4a7c59 0%,
+                #2d5f3f 100%
+            );
+        }
+
+        /* JOURNEY */
+
+        .journey-list{
+
+            display:flex;
+
+            flex-direction:column;
+
+            gap:18px;
+        }
+
+        .journey-item{
+
+            display:flex;
+
+            justify-content:space-between;
+
+            padding:16px;
+
+            background:#f0f4f0;
+
+            border-radius:14px;
+        }
+
+        .journey-label{
+
+            color:#5a7a63;
+        }
+
+        .journey-value{
+
+            color:#2d5f3f;
+
+            font-weight:bold;
+        }
+
+        /* ACHIEVEMENTS */
+
+        .achievements-grid{
+
+            display:grid;
+
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+            gap:18px;
+        }
+
+        .achievement-card{
+
+            background:#f0f4f0;
+
+            padding:24px;
+
+            border-radius:18px;
+
+            text-align:center;
+
+            transition:0.3s;
+        }
+
+        .achievement-card:hover{
+
+            transform:translateY(-5px);
+        }
+
+        .achievement-icon{
+
+            font-size:48px;
+
+            margin-bottom:15px;
+        }
+
+        .achievement-title{
+
+            font-weight:bold;
+
+            color:#2d5f3f;
+
+            margin-bottom:8px;
+        }
+
+        .achievement-desc{
+
+            color:#666;
+
+            font-size:14px;
+        }
+
+        /* PREFERENCES */
+
+        .preferences-list{
+
+            display:flex;
+
+            flex-direction:column;
+
+            gap:18px;
+        }
+
+        .preference-item{
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            padding:16px;
+
+            background:#f0f4f0;
+
+            border-radius:14px;
+        }
+
+        .preference-label{
+
+            color:#2d5f3f;
+
+            font-weight:600;
+        }
+
+        .toggle-switch{
+
+            width:55px;
+
+            height:28px;
+
+            border-radius:30px;
+
+            background:#d4e4d8;
+
+            position:relative;
+
+            cursor:pointer;
+        }
+
+        .toggle-switch.active{
+
+            background:linear-gradient(
+                135deg,
+                #4a7c59 0%,
+                #2d5f3f 100%
+            );
+        }
+
+        .toggle-slider{
+
+            position:absolute;
+
+            top:3px;
+
+            left:3px;
+
+            width:22px;
+
+            height:22px;
+
+            border-radius:50%;
+
+            background:white;
+
+            transition:0.3s;
+        }
+
+        .toggle-switch.active .toggle-slider{
+
+            transform:translateX(27px);
+        }
+
+        /* MOBILE */
+
+        @media(max-width:968px){
+
+            .content-grid{
+
+                grid-template-columns:1fr;
+            }
+
+            .profile-header{
+
+                flex-direction:column;
+
+                text-align:center;
+            }
+
+            .profile-stats{
+
+                justify-content:center;
+
+                gap:25px;
+            }
+
+            .header{
+
+                flex-direction:column;
+
+                gap:15px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <a href="{{ url_for('dashboard') }}" class="logo">
+
+        <dotlottie-player
+            src="https://lottie.host/464c2e73-cef3-40da-bae4-161388c05964/mWXvtkn8mQ.lottie"
+            background="transparent"
+            speed="1"
+            style="width:40px;height:40px;"
+            loop
+            autoplay
+            class="logo-mascot">
+        </dotlottie-player>
+
+        StudySage
+
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('search_page') }}">
+            Search
+        </a>
+
+        <a href="{{ url_for('bookmarks') }}">
+            Bookmarks
+        </a>
+
+        <a href="{{ url_for('analytics') }}">
+            Analytics
+        </a>
+
+        <a href="{{ url_for('profile') }}" class="user-profile">
+
+            <div class="user-avatar">
+                {{ current_user.name[0].upper() }}
+            </div>
+
+            <span>
+                Profile
+            </span>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="profile-container">
+
+    <!-- PROFILE HEADER -->
+
+    <div class="profile-header">
+
+        <div class="profile-avatar-large">
+
+            {{ current_user.name[0].upper() }}
+
+        </div>
+
+        <div class="profile-info">
+
+            <h1 class="profile-name">
+                {{ current_user.name }}
+            </h1>
+
+            <div class="profile-email">
+                {{ current_user.email }}
+            </div>
+
+            <div class="profile-stats">
+
+                <div class="stat-item">
+
+                    <div class="stat-number">
+                        7
+                    </div>
+
+                    <div class="stat-text">
+                        Courses Completed
+                    </div>
+
+                </div>
+
+                <div class="stat-item">
+
+                    <div class="stat-number">
+                        23h
+                    </div>
+
+                    <div class="stat-text">
+                        Learning Time
+                    </div>
+
+                </div>
+
+                <div class="stat-item">
+
+                    <div class="stat-number">
+                        3
+                    </div>
+
+                    <div class="stat-text">
+                        Certificates
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- GRID -->
+
+    <div class="content-grid">
+
+        <!-- PERSONAL INFO -->
+
+        <div class="profile-card">
+
+            <div class="card-title">
+                Personal Information
+            </div>
+
+            <div class="info-group">
+
+                <div class="info-label">
+                    Full Name
+                </div>
+
+                <div class="info-value">
+                    {{ current_user.name }}
+                </div>
+
+            </div>
+
+            <div class="info-group">
+
+                <div class="info-label">
+                    Email Address
+                </div>
+
+                <div class="info-value">
+                    {{ current_user.email }}
+                </div>
+
+            </div>
+
+            <div class="info-group">
+
+                <div class="info-label">
+                    Education
+                </div>
+
+                <div class="info-value">
+                    MCA Student
+                </div>
+
+            </div>
+
+            <div class="info-group">
+
+                <div class="info-label">
+                    Location
+                </div>
+
+                <div class="info-value">
+                    India
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- LEARNING JOURNEY -->
+
+        <div class="profile-card">
+
+            <div class="card-title">
+                Learning Journey
+            </div>
+
+            <div class="journey-list">
+
+                <div class="journey-item">
+
+                    <span class="journey-label">
+                        Started Learning
+                    </span>
+
+                    <span class="journey-value">
+                        Jan 2025
+                    </span>
+
+                </div>
+
+                <div class="journey-item">
+
+                    <span class="journey-label">
+                        Favorite Topic
+                    </span>
+
+                    <span class="journey-value">
+                        AI / ML
+                    </span>
+
+                </div>
+
+                <div class="journey-item">
+
+                    <span class="journey-label">
+                        Current Focus
+                    </span>
+
+                    <span class="journey-value">
+                        Flask & Python
+                    </span>
+
+                </div>
+
+                <div class="journey-item">
+
+                    <span class="journey-label">
+                        Learning Streak
+                    </span>
+
+                    <span class="journey-value">
+                        14 Days
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- INTERESTS -->
+
+        <div class="profile-card full-width">
+
+            <div class="card-title">
+                Learning Interests
+            </div>
+
+            <div class="interests-tags">
+
+                <div class="interest-tag">
+                    🤖 Machine Learning
+                </div>
+
+                <div class="interest-tag">
+                    🐍 Python
+                </div>
+
+                <div class="interest-tag">
+                    🌐 Web Development
+                </div>
+
+                <div class="interest-tag">
+                    ☁️ Cloud Computing
+                </div>
+
+                <div class="interest-tag">
+                    🔒 Cybersecurity
+                </div>
+
+                <div class="interest-tag">
+                    📊 Data Science
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- GOALS -->
+
+        <div class="profile-card">
+
+            <div class="card-title">
+                Learning Goals
+            </div>
+
+            <div class="goal-item">
+
+                <div class="goal-title">
+                    Machine Learning Specialization
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:72%;"></div>
+                </div>
+
+            </div>
+
+            <div class="goal-item">
+
+                <div class="goal-title">
+                    Full Stack Web Development
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:48%;"></div>
+                </div>
+
+            </div>
+
+            <div class="goal-item">
+
+                <div class="goal-title">
+                    AWS Cloud Practitioner
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:35%;"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PREFERENCES -->
+
+        <div class="profile-card">
+
+            <div class="card-title">
+                Learning Preferences
+            </div>
+
+            <div class="preferences-list">
+
+                <div class="preference-item">
+
+                    <span class="preference-label">
+                        Email Notifications
+                    </span>
+
+                    <div class="toggle-switch active"
+                         onclick="this.classList.toggle('active')">
+
+                        <div class="toggle-slider"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="preference-item">
+
+                    <span class="preference-label">
+                        Daily Learning Reminders
+                    </span>
+
+                    <div class="toggle-switch active"
+                         onclick="this.classList.toggle('active')">
+
+                        <div class="toggle-slider"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="preference-item">
+
+                    <span class="preference-label">
+                        Course Recommendations
+                    </span>
+
+                    <div class="toggle-switch active"
+                         onclick="this.classList.toggle('active')">
+
+                        <div class="toggle-slider"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ACHIEVEMENTS -->
+
+        <div class="profile-card full-width">
+
+            <div class="card-title">
+                Achievements
+            </div>
+
+            <div class="achievements-grid">
+
+                <div class="achievement-card">
+
+                    <div class="achievement-icon">
+                        🎓
+                    </div>
+
+                    <div class="achievement-title">
+                        First Course Completed
+                    </div>
+
+                    <div class="achievement-desc">
+                        Completed your first learning path successfully
+                    </div>
+
+                </div>
+
+                <div class="achievement-card">
+
+                    <div class="achievement-icon">
+                        🔥
+                    </div>
+
+                    <div class="achievement-title">
+                        14 Day Streak
+                    </div>
+
+                    <div class="achievement-desc">
+                        Maintained consistent learning activity
+                    </div>
+
+                </div>
+
+                <div class="achievement-card">
+
+                    <div class="achievement-icon">
+                        📚
+                    </div>
+
+                    <div class="achievement-title">
+                        Resource Explorer
+                    </div>
+
+                    <div class="achievement-desc">
+                        Saved multiple educational resources
+                    </div>
+
+                </div>
+
+                <div class="achievement-card">
+
+                    <div class="achievement-icon">
+                        🚀
+                    </div>
+
+                    <div class="achievement-title">
+                        Fast Learner
+                    </div>
+
+                    <div class="achievement-desc">
+                        Completed 2 courses within one month
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

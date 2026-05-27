@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search Results - StudySage</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Baloo 2', sans-serif;
+            background-color: #f0f4f0;
+        }
+
+        /* HEADER */
+
+        .header {
+
+            background-color: white;
+
+            padding: 15px 20px;
+
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: #2d5f3f;
+
+            text-decoration: none;
+        }
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 20px;
+        }
+
+        .nav-links a {
+
+            color: #2d5f3f;
+
+            text-decoration: none;
+
+            font-weight: 600;
+        }
+
+        /* SEARCH BAR */
+
+        .search-bar-top {
+
+            background-color: white;
+
+            padding: 20px;
+        }
+
+        .search-bar-content {
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+        input {
+
+            flex: 1;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            border: 1px solid #ccc;
+
+            font-family: 'Baloo 2', sans-serif;
+        }
+
+        button {
+
+            padding: 12px 20px;
+
+            background: #2d5f3f;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-family: 'Baloo 2', sans-serif;
+
+            font-weight: bold;
+        }
+
+        /* RESULTS */
+
+        .results-container {
+
+            max-width: 950px;
+
+            margin: 35px auto;
+
+            padding: 0 20px;
+        }
+
+        .results-header {
+
+            margin-bottom: 25px;
+        }
+
+        .results-header h2 {
+
+            font-size: 34px;
+
+            color: #111;
+        }
+
+        .resource-card {
+
+            background: white;
+
+            padding: 28px;
+
+            border-radius: 20px;
+
+            margin-bottom: 25px;
+
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+        .resource-card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .resource-type {
+
+            display: inline-block;
+
+            background: #e8f5e9;
+
+            color: #2d5f3f;
+
+            padding: 6px 14px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+        .resource-title {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: #2d5f3f;
+
+            margin-bottom: 12px;
+        }
+
+        .resource-description {
+
+            color: #555;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+
+            margin-bottom: 18px;
+        }
+
+        .resource-links {
+
+            display: flex;
+
+            gap: 14px;
+
+            flex-wrap: wrap;
+
+            margin-top: 15px;
+        }
+
+        .resource-btn {
+
+            background: #4a7c59;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 11px 18px;
+
+            border-radius: 12px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .resource-btn:hover {
+
+            background: #2d5f3f;
+
+            transform: translateY(-2px);
+        }
+
+        .resource-meta {
+
+            margin-top: 18px;
+
+            font-size: 14px;
+
+            color: #777;
+        }
+
+        .empty-state {
+
+            text-align: center;
+
+            padding: 50px;
+        }
+
+        .empty-state h2 {
+
+            color: #2d5f3f;
+
+            margin-bottom: 10px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 768px) {
+
+            .header {
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            .search-bar-content {
+
+                flex-direction: column;
+            }
+
+            .resource-title {
+
+                font-size: 24px;
+            }
+
+            .results-header h2 {
+
+                font-size: 28px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <a href="{{ url_for('dashboard') }}" class="logo">
+        StudySage
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('search_page') }}">
+            Search
+        </a>
+
+        <a href="{{ url_for('bookmarks') }}">
+            Bookmarks
+        </a>
+
+        <a href="{{ url_for('analytics') }}">
+            Analytics
+        </a>
+
+    </div>
+
+</div>
+
+<!-- SEARCH AGAIN -->
+
+<div class="search-bar-top">
+
+    <form method="POST" action="{{ url_for('search') }}">
+
+        <div class="search-bar-content">
+
+            <input
+                type="text"
+                name="query"
+                value="{{ query }}"
+                placeholder="Search again...">
+
+            <button type="submit">
+                Search
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+<!-- RESULTS -->
+
+<div class="results-container">
+
+    <div class="results-header">
+
+        <h2>
+            {{ results|length }} results for "{{ query }}"
+        </h2>
+
+    </div>
+
+    {% if results %}
+
+        {% for item in results %}
+
+        <div class="resource-card">
+
+            <div class="resource-type">
+                {{ item.type.upper() }}
+            </div>
+
+            <div class="resource-title">
+                {{ item.title }}
+            </div>
+
+            <div class="resource-description">
+                {{ item.description }}
+            </div>
+
+            <div class="resource-links">
+
+                <a
+                    href="{{ item.article }}"
+                    target="_blank"
+                    class="resource-btn">
+
+                    📖 Article
+
+                </a>
+
+                <a
+                    href="{{ item.course }}"
+                    target="_blank"
+                    class="resource-btn">
+
+                    🎓 Course
+
+                </a>
+
+                <a
+                    href="{{ item.youtube }}"
+                    target="_blank"
+                    class="resource-btn">
+
+                    ▶ YouTube Playlist
+
+                </a>
+
+            </div>
+
+            <div class="resource-meta">
+                Source: {{ item.source }}
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <h2>No results found</h2>
+
+            <p>Try different keywords</p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarks - StudySage</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Baloo 2',sans-serif;
+            background:#f0f4f0;
+        }
+
+        /* HEADER */
+
+        .header{
+
+            background:white;
+
+            padding:15px 25px;
+
+            display:flex;
+
+            justify-content:space-between;
+            align-items:center;
+
+            box-shadow:0px 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo{
+
+            font-size:30px;
+
+            font-weight:bold;
+
+            color:#2d5f3f;
+
+            text-decoration:none;
+        }
+
+        .nav-links{
+
+            display:flex;
+
+            gap:22px;
+        }
+
+        .nav-links a{
+
+            color:#2d5f3f;
+
+            text-decoration:none;
+
+            font-weight:600;
+        }
+
+        /* PAGE */
+
+        .container{
+
+            max-width:1300px;
+
+            margin:auto;
+
+            padding:40px 20px;
+        }
+
+        .page-title{
+
+            font-size:46px;
+
+            color:#2d5f3f;
+
+            margin-bottom:10px;
+        }
+
+        .page-subtitle{
+
+            color:#5a7a63;
+
+            font-size:18px;
+
+            margin-bottom:35px;
+        }
+
+        /* GRID */
+
+        .bookmarks-grid{
+
+            display:grid;
+
+            grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+
+            gap:25px;
+        }
+
+        /* CARD */
+
+        .bookmark-card{
+
+            background:white;
+
+            border-radius:22px;
+
+            overflow:hidden;
+
+            box-shadow:0px 4px 18px rgba(0,0,0,0.08);
+
+            transition:0.3s;
+        }
+
+        .bookmark-card:hover{
+
+            transform:translateY(-5px);
+
+            box-shadow:0px 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .bookmark-top{
+
+            padding:22px;
+
+            background:linear-gradient(
+                135deg,
+                #4a7c59 0%,
+                #2d5f3f 100%
+            );
+
+            color:white;
+        }
+
+        .resource-type{
+
+            display:inline-block;
+
+            background:white;
+
+            color:#2d5f3f;
+
+            padding:6px 14px;
+
+            border-radius:20px;
+
+            font-size:12px;
+
+            font-weight:bold;
+
+            margin-bottom:14px;
+        }
+
+        .bookmark-title{
+
+            font-size:26px;
+
+            font-weight:bold;
+
+            line-height:1.3;
+        }
+
+        .bookmark-content{
+
+            padding:25px;
+        }
+
+        .bookmark-description{
+
+            color:#555;
+
+            line-height:1.7;
+
+            margin-bottom:20px;
+        }
+
+        .bookmark-meta{
+
+            display:flex;
+
+            gap:15px;
+
+            flex-wrap:wrap;
+
+            margin-bottom:20px;
+
+            color:#666;
+
+            font-size:14px;
+        }
+
+        /* BUTTONS */
+
+        .resource-links{
+
+            display:flex;
+
+            gap:12px;
+
+            flex-wrap:wrap;
+        }
+
+        .resource-btn{
+
+            text-decoration:none;
+
+            background:#4a7c59;
+
+            color:white;
+
+            padding:11px 18px;
+
+            border-radius:12px;
+
+            font-weight:bold;
+
+            transition:0.3s;
+
+            font-size:14px;
+        }
+
+        .resource-btn:hover{
+
+            background:#2d5f3f;
+
+            transform:translateY(-2px);
+        }
+
+        .remove-btn{
+
+            background:#ffebee;
+
+            color:#c62828;
+        }
+
+        .remove-btn:hover{
+
+            background:#ffcdd2;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:768px){
+
+            .header{
+
+                flex-direction:column;
+
+                gap:15px;
+            }
+
+            .page-title{
+
+                font-size:36px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <a href="{{ url_for('dashboard') }}" class="logo">
+        StudySage
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('search_page') }}">
+            Search
+        </a>
+
+        <a href="{{ url_for('bookmarks') }}">
+            Bookmarks
+        </a>
+
+        <a href="{{ url_for('analytics') }}">
+            Analytics
+        </a>
+
+    </div>
+
+</div>
+
+<!-- PAGE -->
+
+<div class="container">
+
+    <h1 class="page-title">
+        My Saved Resources
+    </h1>
+
+    <p class="page-subtitle">
+        Your bookmarked courses, articles, playlists, and learning materials
+    </p>
+
+    <div class="bookmarks-grid">
+
+        <!-- CARD -->
+
+        <div class="bookmark-card">
+
+            <div class="bookmark-top">
+
+                <div class="resource-type">
+                    AI / ML
+                </div>
+
+                <div class="bookmark-title">
+                    Machine Learning Specialization
+                </div>
+
+            </div>
+
+            <div class="bookmark-content">
+
+                <div class="bookmark-description">
+
+                    Complete machine learning roadmap including supervised learning,
+                    deep learning, neural networks, and practical AI projects.
+
+                </div>
+
+                <div class="bookmark-meta">
+
+                    <span>⭐ 4.9</span>
+
+                    <span>👥 1.2M learners</span>
+
+                    <span>⏱️ 3 Months</span>
+
+                </div>
+
+                <div class="resource-links">
+
+                    <a
+                        href="https://www.coursera.org/specializations/machine-learning-introduction"
+                        target="_blank"
+                        class="resource-btn">
+
+                        🎓 Course
+
+                    </a>
+
+                    <a
+                        href="https://www.youtube.com/playlist?list=PLKnIA16_RmvY5eP91BGPa0vXUYmIdtfPQ"
+                        target="_blank"
+                        class="resource-btn">
+
+                        ▶ Playlist
+
+                    </a>
+
+                    <a
+                        href="#"
+                        class="resource-btn remove-btn">
+
+                        Remove
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="bookmark-card">
+
+            <div class="bookmark-top">
+
+                <div class="resource-type">
+                    WEB DEVELOPMENT
+                </div>
+
+                <div class="bookmark-title">
+                    Full Stack Web Development
+                </div>
+
+            </div>
+
+            <div class="bookmark-content">
+
+                <div class="bookmark-description">
+
+                    Learn frontend + backend development with HTML, CSS,
+                    JavaScript, React, Flask, APIs, and deployment.
+
+                </div>
+
+                <div class="bookmark-meta">
+
+                    <span>⭐ 4.8</span>
+
+                    <span>👨‍💻 Full Stack</span>
+
+                    <span>⏱️ 45 Hours</span>
+
+                </div>
+
+                <div class="resource-links">
+
+                    <a
+                        href="https://www.theodinproject.com/"
+                        target="_blank"
+                        class="resource-btn">
+
+                        🎓 Course
+
+                    </a>
+
+                    <a
+                        href="https://developer.mozilla.org/en-US/docs/Learn"
+                        target="_blank"
+                        class="resource-btn">
+
+                        📖 Article
+
+                    </a>
+
+                    <a
+                        href="#"
+                        class="resource-btn remove-btn">
+
+                        Remove
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="bookmark-card">
+
+            <div class="bookmark-top">
+
+                <div class="resource-type">
+                    CYBERSECURITY
+                </div>
+
+                <div class="bookmark-title">
+                    Ethical Hacking & Cybersecurity
+                </div>
+
+            </div>
+
+            <div class="bookmark-content">
+
+                <div class="bookmark-description">
+
+                    Learn penetration testing, ethical hacking,
+                    malware analysis, and cyber defense systems.
+
+                </div>
+
+                <div class="bookmark-meta">
+
+                    <span>🛡️ Security</span>
+
+                    <span>⭐ 4.8</span>
+
+                    <span>⏱️ 32 Hours</span>
+
+                </div>
+
+                <div class="resource-links">
+
+                    <a
+                        href="https://www.coursera.org/professional-certificates/google-cybersecurity"
+                        target="_blank"
+                        class="resource-btn">
+
+                        🎓 Course
+
+                    </a>
+
+                    <a
+                        href="https://www.ibm.com/topics/cybersecurity"
+                        target="_blank"
+                        class="resource-btn">
+
+                        📖 Article
+
+                    </a>
+
+                    <a
+                        href="#"
+                        class="resource-btn remove-btn">
+
+                        Remove
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

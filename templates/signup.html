@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - StudySage</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: 'Baloo 2', sans-serif;
+            background: linear-gradient(135deg, #f0f4f0 0%, #e8f5e9 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: white;
+            padding: 15px 20px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2d5f3f;
+
+            display: flex;
+            align-items: center;
+
+            text-decoration: none;
+        }
+
+        .logo-mascot {
+            margin-right: 5px;
+
+            width: 40px !important;
+            height: 40px !important;
+
+            transform: none !important;
+        }
+
+        .button {
+            padding: 12px 28px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            margin-left: 10px;
+
+            display: inline-block;
+
+            transition: all 0.3s;
+        }
+
+        .home-btn {
+            border: 2px solid #2d5f3f;
+            color: #2d5f3f;
+        }
+
+        .home-btn:hover {
+            background-color: #f0f4f0;
+        }
+
+        .login-btn {
+            background-color: #4a7c59;
+            color: white;
+            border: none;
+        }
+
+        .login-btn:hover {
+            background-color: #2d5f3f;
+        }
+
+        .signup-page {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            min-height: calc(100vh - 70px);
+
+            gap: 0;
+        }
+
+        .illustration-side {
+
+            background: linear-gradient(
+                135deg,
+                #4a7c59 0%,
+                #2d5f3f 100%
+            );
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: flex-start;
+            align-items: center;
+
+            padding: 0 40px 20px 40px;
+
+            color: white;
+        }
+
+        .illustration-content {
+
+            max-width: 500px;
+
+            text-align: center;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+        }
+
+        .illustration-side h2 {
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+            margin-top: 20px;
+
+            color: white;
+
+            line-height: 1.2;
+        }
+
+        .illustration-side p {
+
+            font-size: 17px;
+
+            text-align: center;
+
+            line-height: 1.5;
+
+            margin-bottom: 30px;
+
+            opacity: 0.95;
+        }
+
+        .form-side {
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 40px 20px;
+        }
+
+        .signup-container {
+
+            background-color: white;
+
+            border-radius: 30px;
+
+            padding: 50px;
+
+            max-width: 450px;
+            width: 100%;
+
+            box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+
+            color: #2d5f3f;
+
+            font-size: 32px;
+
+            text-align: center;
+
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+
+            color: #5a7a63;
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+            font-size: 16px;
+        }
+
+        .alert {
+
+            padding: 12px 20px;
+
+            margin-bottom: 20px;
+
+            border-radius: 12px;
+
+            font-size: 14px;
+        }
+
+        .alert-error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        .alert-success {
+            background-color: #e8f5e9;
+            color: #2d5f3f;
+            border: 1px solid #c8e6c9;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+
+            display: block;
+
+            color: #2d5f3f;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+
+            font-size: 14px;
+        }
+
+        .form-group input {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: 2px solid #d4e4d8;
+
+            border-radius: 15px;
+
+            font-size: 16px;
+
+            box-sizing: border-box;
+
+            font-family: 'Baloo 2', sans-serif;
+
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+
+            outline: none;
+
+            border-color: #4a7c59;
+        }
+
+        .btn {
+
+            width: 100%;
+
+            padding: 15px;
+
+            background: linear-gradient(
+                135deg,
+                #4a7c59 0%,
+                #2d5f3f 100%
+            );
+
+            color: white;
+
+            border: none;
+
+            border-radius: 30px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+
+            transition: all 0.3s;
+
+            font-family: 'Baloo 2', sans-serif;
+        }
+
+        .btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow: 0px 6px 20px rgba(45, 95, 63, 0.4);
+        }
+
+        .divider {
+
+            text-align: center;
+
+            margin: 25px 0;
+
+            color: #999;
+
+            position: relative;
+        }
+
+        .divider::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 50%;
+
+            width: 40%;
+
+            height: 1px;
+
+            background: #ddd;
+        }
+
+        .divider::after {
+
+            content: "";
+
+            position: absolute;
+
+            right: 0;
+            top: 50%;
+
+            width: 40%;
+
+            height: 1px;
+
+            background: #ddd;
+        }
+
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            padding: 15px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            background-color: white;
+
+            color: #333;
+
+            border: 2px solid #ddd;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .google-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .google-icon {
+            width: 22px;
+            height: 22px;
+        }
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #5a7a63;
+
+            font-size: 14px;
+        }
+
+        .footer a {
+
+            color: #4a7c59;
+
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 968px) {
+
+            .signup-page {
+                grid-template-columns: 1fr;
+            }
+
+            .illustration-side {
+                display: none;
+            }
+
+            .signup-container {
+                padding: 30px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+
+        <a href="{{ url_for('index') }}" class="logo">
+
+            <dotlottie-player
+                src="https://lottie.host/464c2e73-cef3-40da-bae4-161388c05964/mWXvtkn8mQ.lottie"
+                background="transparent"
+                speed="1"
+                style="width: 40px; height: 40px;"
+                loop
+                autoplay
+                class="logo-mascot">
+            </dotlottie-player>
+
+            StudySage
+
+        </a>
+
+        <div>
+
+            <a href="{{ url_for('index') }}" class="button home-btn">
+                Home
+            </a>
+
+            <a href="{{ url_for('login') }}" class="button login-btn">
+                Log In
+            </a>
+
+        </div>
+    </div>
+
+    <div class="signup-page">
+
+        <div class="illustration-side">
+
+            <div class="illustration-content">
+
+                <h2>Start Learning Today!</h2>
+
+                <p>
+                    Join thousands of students already using
+                    StudySage to master new skills and achieve their goals
+                </p>
+
+                <dotlottie-player
+                    src="https://lottie.host/ace86a64-8d3f-43b9-81fb-610f13eb7d94/NbzurJcXxQ.lottie"
+                    background="transparent"
+                    speed="1"
+                    style="width: 450px; height: 450px;"
+                    loop
+                    autoplay>
+                </dotlottie-player>
+
+            </div>
+        </div>
+
+        <div class="form-side">
+
+            <div class="signup-container">
+
+                <h2>Create Account</h2>
+
+                <p class="subtitle">
+                    Join StudySage to track your learning easily
+                </p>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form method="POST" action="{{ url_for('signup') }}">
+
+                    <div class="form-group">
+
+                        <label for="name">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="email">Email</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="password">Password</label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            required
+                            minlength="6">
+
+                    </div>
+
+                    <button type="submit" class="btn">
+                        Create Account
+                    </button>
+
+                </form>
+
+                <div class="divider">OR</div>
+
+                <a href="{{ url_for('google_login') }}" class="google-btn">
+
+                    <img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                        alt="Google Logo"
+                        class="google-icon">
+
+                    Continue with Google
+
+                </a>
+
+                <div class="footer">
+
+                    Already have an account?
+
+                    <a href="{{ url_for('login') }}">
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
