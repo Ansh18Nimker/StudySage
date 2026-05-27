@@ -5,6 +5,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from authlib.integrations.flask_client import OAuth
 
 app = Flask(__name__)
+app.instance_path = "/tmp"
 
 # ---------------- CONFIG ----------------
 app.config['SECRET_KEY'] = 'studysage_secret_key'
