@@ -5,7 +5,10 @@ load_dotenv()
 
 class Config:
     SECRET_KEY = os.getenv('FLASK_SECRET_KEY', 'dev-secret-key')
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI', 'sqlite:///studysage.db')
+    SQLALCHEMY_DATABASE_URI = os.getenv(
+    'DATABASE_URI',
+    'sqlite:////tmp/studysage.db'
+    )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
     DEBUG = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
